@@ -1,3 +1,3 @@
-// build time:Sat Dec 05 2020 14:48:18 GMT+0800 (GMT+08:00)
+// build time:Sat Dec 05 2020 14:49:44 GMT+0800 (GMT+08:00)
 var n={bind:function(n,e,a){n.addEventListener(e,a,false)},addClass:function(n,e){var a=n.className?n.className.split(" "):[];if(a.indexOf(e)<0){a.push(e)}n.className=a.join(" ");return n},removeClass:function(n,e){var a=n.className?n.className.split(" "):[];var s=a.indexOf(e);if(s>-1){a.splice(s,1)}n.className=a.join(" ");return n},request:function(n,e,a,s){var i=new XMLHttpRequest;if(typeof a==="function"){s=a;a=null}i.open(n,e);var r=new FormData;if(n==="POST"&&a){for(var t in a){r.append(t,JSON.stringify(a[t]))}}i.onload=function(){s(JSON.parse(i.response))};i.send(a?r:null)}};
 //rebuild by hrmmi 
