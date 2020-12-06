@@ -1,3 +1,131 @@
-// build time:Sun Dec 06 2020 21:52:30 GMT+0800 (GMT+08:00)
-(function e(t,r,n){function o(a,f){if(!r[a]){if(!t[a]){var c=typeof require=="function"&&require;if(!f&&c)return c(a,!0);if(i)return i(a,!0);var l=new Error("Cannot find module '"+a+"'");throw l.code="MODULE_NOT_FOUND",l}var s=r[a]={exports:{}};t[a][0].call(s.exports,function(e){var r=t[a][1][e];return o(r?r:e)},s,s.exports,e,t,r,n)}return r[a].exports}var i=typeof require=="function"&&require;for(var a=0;a<n.length;a++)o(n[a]);return o})({1:[function(e,t,r){"use strict";t.exports=function n(e){var t=e.getBoundingClientRect();var r=document.body;var n=document.documentElement;var o=window.pageYOffset||n.scrollTop||r.scrollTop;var i=window.pageXOffset||n.scrollLeft||r.scrollLeft;var a=n.clientTop||r.clientTop||0;var f=n.clientLeft||r.clientLeft||0;var c=t.top+o-a;var l=t.left+i-f;return{top:Math.round(c),left:Math.round(l)}}},{}],2:[function(e,t,r){"use strict";var n=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(e){return typeof e}:function(e){return e&&typeof Symbol==="function"&&e.constructor===Symbol?"symbol":typeof e};var o=e("./scroll-spy");(function(e){if(typeof define==="function"&&define.amd){define([],e)}else if((typeof window==="undefined"?"undefined":n(window))==="object"){window.scrollSpy=e()}})(function(){return o})},{"./scroll-spy":3}],3:[function(e,t,r){"use strict";var n=e("./getOffsetRect");var o=e("./util");var i=document.body;t.exports={init:function c(e){var t=e.activeClassName||"active";var r=e.scrollTarget||document;var n=Array.prototype.slice.call(e.nodeList);var i=a(n);f(i,t);o.bind(r,"scroll",function(){f(i,t)})}};function a(e){var t=[];for(var r=0,o=e.length;r<o;r++){var i=decodeURI(e[r].hash.replace(/^#/,""));var a=document.getElementById(i);var f=n(a);var c=window.getComputedStyle(document.getElementById(i))["height"];t[r]={height:parseInt(c),top:f.top,elem:e[r]}}return t}function f(e,t){var r=0;for(var n=0,a=e.length;n<a;n++){if(i.scrollTop<e[n].top-e[n].height/3){r=n;break}}for(var f=0,c=e.length;f<c;f++){o.removeClass(e[f].elem,t)}if(r>0){o.addClass(e[r-1].elem,t)}}},{"./getOffsetRect":1,"./util":4}],4:[function(e,t,r){"use strict";t.exports={bind:function n(e,t,r){e.addEventListener(t,r,false)},addClass:function o(e,t){var r=e.className.split(" ");if(r.indexOf(t)<0){r.push(t)}e.className=r.join(" ");return e},removeClass:function i(e,t){var r=e.className.split(" ");var n=r.indexOf(t);if(n>-1){r.splice(n,1)}e.className=r.join(" ");return e}}},{}]},{},[2]);
-//rebuild by hrmmi 
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
+
+module.exports = function getOffsetRect(elem) {
+
+  // (1)
+  var box = elem.getBoundingClientRect();
+
+  var body = document.body;
+  var docElem = document.documentElement;
+
+  // (2)
+  var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+  var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+
+  // (3)
+  var clientTop = docElem.clientTop || body.clientTop || 0;
+  var clientLeft = docElem.clientLeft || body.clientLeft || 0;
+
+  // (4)
+  var top = box.top + scrollTop - clientTop;
+  var left = box.left + scrollLeft - clientLeft;
+
+  return { top: Math.round(top), left: Math.round(left) };
+};
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var scrollSpy = require('./scroll-spy');
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object') {
+    window.scrollSpy = factory();
+  }
+})(function () {
+
+  return scrollSpy;
+});
+
+},{"./scroll-spy":3}],3:[function(require,module,exports){
+'use strict';
+
+var getOffsetRect = require('./getOffsetRect');
+var util = require('./util');
+var $body = document.body;
+
+module.exports = {
+  init: function init(options) {
+    var className = options.activeClassName || 'active';
+    var scrollTarget = options.scrollTarget || document;
+    var ary = Array.prototype.slice.call(options.nodeList);
+
+    var items = getItems(ary);
+
+    spy(items, className);
+
+    util.bind(scrollTarget, 'scroll', function () {
+      spy(items, className);
+    });
+  }
+};
+
+// //////////////////////
+function getItems(ary) {
+  var items = [];
+  for (var i = 0, l = ary.length; i < l; i++) {
+    var id = decodeURI(ary[i].hash.replace(/^#/, ''));
+    var $target = document.getElementById(id);
+    var offset = getOffsetRect($target);
+    var height = window.getComputedStyle(document.getElementById(id))['height'];
+    items[i] = { height: parseInt(height), top: offset.top, elem: ary[i] };
+  }
+
+  return items;
+}
+
+function spy(items, className) {
+  var find = 0;
+
+  for (var i = 0, l = items.length; i < l; i++) {
+    if ($body.scrollTop < items[i].top - items[i].height / 3) {
+      find = i;
+      break;
+    }
+  }
+
+  for (var j = 0, _l = items.length; j < _l; j++) {
+    util.removeClass(items[j].elem, className);
+  }
+
+  if (find > 0) {
+    util.addClass(items[find - 1].elem, className);
+  }
+}
+
+},{"./getOffsetRect":1,"./util":4}],4:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+  bind: function bind(element, name, listener) {
+    element.addEventListener(name, listener, false);
+  },
+
+  addClass: function addClass(element, className) {
+    var classes = element.className.split(' ');
+    if (classes.indexOf(className) < 0) {
+      classes.push(className);
+    }
+
+    element.className = classes.join(' ');
+    return element;
+  },
+
+  removeClass: function removeClass(element, className) {
+    var classes = element.className.split(' ');
+    var index = classes.indexOf(className);
+    if (index > -1) {
+      classes.splice(index, 1);
+    }
+
+    element.className = classes.join(' ');
+    return element;
+  }
+};
+
+},{}]},{},[2]);
