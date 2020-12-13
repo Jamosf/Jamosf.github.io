@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>搭建博客 | 不止</title>
+  <title>go函数认知 | 不止</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,15 +15,15 @@
     <meta name="keywords" content="Jamosf,后端,golang,linux,docker,yun" />
   
 
-  <meta name="description" content="每一项成绩都是坚持的成果，每一次失败都是懈怠的后果。这种因果关系，再简单不过了。 前几天我在github上闲逛的时候，看到一位前辈利用jekyll搭建博客，搭出来的效果很不错，是我喜欢的类型。我以前也听说过可以利用github当作服务器，来搭建博客，可由于需求不大，没下手去做。现在讲讲搭建博客的过程吧。 事先准备：github账号、git、jekyll模版、域名（可有可无）  在github上申请">
+  <meta name="description" content="go语言中函数作为一等公民，具备值对象的所有特性。可以把函数传递给一个变量，可以将函数作为返回值返回。 1var f &#x3D; func()&amp;#123;fmt.Println(&quot;hello world!&quot;)&amp;#125; f是一个函数类型的变量，其内存存储的是什么？函数是一个值吗？应该不是的。我们看下下面这两个打印内容便能知道一些问题。 1234func a() int&amp;#123;re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建博客">
-<meta property="og:url" content="http://example.com/2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="go函数认知">
+<meta property="og:url" content="http://example.com/2020/11/22/go%E5%87%BD%E6%95%B0%E8%AE%A4%E7%9F%A5/index.html">
 <meta property="og:site_name" content="不止">
-<meta property="og:description" content="每一项成绩都是坚持的成果，每一次失败都是懈怠的后果。这种因果关系，再简单不过了。 前几天我在github上闲逛的时候，看到一位前辈利用jekyll搭建博客，搭出来的效果很不错，是我喜欢的类型。我以前也听说过可以利用github当作服务器，来搭建博客，可由于需求不大，没下手去做。现在讲讲搭建博客的过程吧。 事先准备：github账号、git、jekyll模版、域名（可有可无）  在github上申请">
+<meta property="og:description" content="go语言中函数作为一等公民，具备值对象的所有特性。可以把函数传递给一个变量，可以将函数作为返回值返回。 1var f &#x3D; func()&amp;#123;fmt.Println(&quot;hello world!&quot;)&amp;#125; f是一个函数类型的变量，其内存存储的是什么？函数是一个值吗？应该不是的。我们看下下面这两个打印内容便能知道一些问题。 1234func a() int&amp;#123;re">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-01-12T14:59:58.000Z">
-<meta property="article:modified_time" content="2020-12-13T13:02:17.471Z">
+<meta property="article:published_time" content="2020-11-22T12:49:38.000Z">
+<meta property="article:modified_time" content="2020-12-13T12:52:35.665Z">
 <meta property="article:author" content="Jamosf">
 <meta name="twitter:card" content="summary">
 
@@ -113,14 +113,14 @@
 
 
 <div class="content content-post CENTER">
-   <article id="post-搭建博客" class="article article-type-post" itemprop="blogPost">
+   <article id="post-go函数认知" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">搭建博客</h1>
+    <h1 class="post-title">go函数认知</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2017.01.12</span>
+        <span>2020.11.22</span>
       </span>
 
       
@@ -136,7 +136,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a target="_blank" rel="noopener" href="https://jamosf.github.io//2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#disqus_thread"></a>
+          <a target="_blank" rel="noopener" href="https://jamosf.github.io//2020/11/22/go%E5%87%BD%E6%95%B0%E8%AE%A4%E7%9F%A5/#disqus_thread"></a>
         </span>
       
 
@@ -153,31 +153,23 @@
 
   <div class="article-content">
     
-      <p>每一项成绩都是坚持的成果，每一次失败都是懈怠的后果。这种因果关系，再简单不过了。</p>
-<p>前几天我在github上闲逛的时候，看到一位前辈利用jekyll搭建博客，搭出来的效果很不错，是我喜欢的类型。我以前也听说过可以利用github当作服务器，来搭建博客，可由于需求不大，没下手去做。现在讲讲搭建博客的过程吧。</p>
-<p>事先准备：github账号、git、jekyll模版、域名（可有可无）</p>
-<ol>
-<li>在github上申请一个账号，很简单，几步就可以搞定。新建一个仓库，名称一定为<code>username.github.io</code>，然后可以利用fork功能，fork别人的经典模版。</li>
-<li>安装git，利用git与github建立联系，clone你fork的<code>jekyll</code>模版仓库文件到本地。</li>
-<li>修改文件中的关键信息，包括网站的布局、个人信息等。</li>
-<li>push到远程的github上。</li>
-<li>将Github上的域名改成自己想要的域名，前提是你已经购买了域名，并已经解析，解析的地址就是<code>username.github.io</code></li>
-<li>浏览器地址栏输入域名，就可以浏览了。</li>
-</ol>
-<p>至于需不需要安装gem和jekyll，我觉得在你打算fork别人的模版时，就无需安装；如果你自己想写自己的模版，那就安装吧。</p>
+      <p>go语言中函数作为一等公民，具备值对象的所有特性。可以把函数传递给一个变量，可以将函数作为返回值返回。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;fmt.Println(<span class="string">&quot;hello world!&quot;</span>)&#125;</span><br></pre></td></tr></table></figure>
+<p>f是一个函数类型的变量，其内存存储的是什么？函数是一个值吗？应该不是的。我们看下下面这两个打印内容便能知道一些问题。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">a</span><span class="params">()</span> <span class="title">int</span></span>&#123;<span class="keyword">return</span> <span class="number">1</span>&#125;</span><br><span class="line">f := a</span><br><span class="line">fmt.Printf(<span class="string">&quot;%p\n&quot;</span>, a)   <span class="comment">// 0x4567</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%p\n&quot;</span>, f)   <span class="comment">// 0x4567</span></span><br></pre></td></tr></table></figure>
+<p>上面两行打印的结果完全一样。为什么？如果函数赋值是值传递，那么f的打印结果肯定和a不一样，现在至少从打印来看，函数赋值存在底层内存的共享，即两个变量同时指向同一块内存。这时我们再来看一个打印。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Printf(<span class="string">&quot;%x\n&quot;</span>, **(**<span class="keyword">uintptr</span>)(unsafe.Pointer(&amp;f)))  <span class="comment">// 0x4567</span></span><br></pre></td></tr></table></figure>
+<p>这一行打印的是f的值指向的地址的内容。即打印的是0x4567，那么0x4567代表的含义是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">变量    地址     内容</span><br><span class="line"> f     0xabcd  0x1234</span><br><span class="line"> a     0x1234  0x4567</span><br></pre></td></tr></table></figure>
+<p>这时我们必须看下go语言函数在底层是怎么定义的。</p>
 <blockquote>
-<p>总结：只要具备基本的html和css基础，甚至没有基础的同学，都可以搭建自己的博客，赶快来试试吧！</p>
+<p>Function pointers denote the code of the function. And the code of an anonymous function created by function literal is only stored once in memory, no matter how many times the code that returns the anonymous function value runs.</p>
 </blockquote>
-<hr>
-<p><strong>2020.12.3更新：</strong></p>
-<p>原先的博客主题使用起来有很多局限，所以又重新尝试使用hexo主题，记录如下：</p>
-<ol>
-<li>下载并安装<code>node</code>；</li>
-<li>使用<code>npm</code>安装<code>hexo</code>库，安装命令：<code>npm install -g hexo-cli</code></li>
-<li>利用<code>hexo</code>来建站<code>hexo init &lt;folder&gt; &amp;&amp; cd &lt;folder&gt; &amp;&amp; npm install</code></li>
-<li>由于自带的主题不是很好看，可以自己选择喜欢的主题进行下载，我选择<code>fexo</code>，直接clone其仓库到<code>theme</code>目录下，然后将<code>config.yml</code>中的<code>theme</code>改为fexo即可。</li>
-<li>图片存储：<a target="_blank" rel="noopener" href="https://sm.ms/">https://sm.ms/</a></li>
-</ol>
+<p>如果我们把a看做是一个函数指针，那么a存储的就是指向函数代码的地址，也就是说0x4567指向的是真实的函数代码执行的区域，在内存空间的代码段中。当需要运行代码段的函数时，会读取并将其加载到栈上运行。<code>f</code>是一个函数类型的变量，其内存存储的是什么？函数是一个值吗？应该不是的。我们看下下面这两个打印内容便能知道一些问题。</p>
+<p>未完。。</p>
+<blockquote>
+<p>原创文章，专载请注明！</p>
+</blockquote>
 
     
   </div>
@@ -215,10 +207,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/01/01/test/">
+    <a class="show pull-left" href="/2020/11/22/go%E8%B8%A9%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2017/05/13/linux%E5%B8%B8%E7%94%A8%E7%8E%A9%E6%B3%95/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -299,7 +291,7 @@
   <script>
     var disqus_shortname = 'Jamosf';
     
-    var disqus_url = 'http://example.com/2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/';
+    var disqus_url = 'http://example.com/2020/11/22/go%E5%87%BD%E6%95%B0%E8%AE%A4%E7%9F%A5/';
     
     (function(){
       var dsq = document.createElement('script');
