@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-13T12:52:35.665Z</updated>
+  <updated>2021-03-28T04:47:57.094Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件设计架构</title>
+    <link href="http://example.com/2021/03/28/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84/"/>
+    <id>http://example.com/2021/03/28/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84/</id>
+    <published>2021-03-28T04:46:50.000Z</published>
+    <updated>2021-03-28T04:47:57.094Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近看了几本关于编程的书籍，都是些讲解软件架构和设计的书。根据目前脑袋中还残留的记忆，我将这些软件设计的相关知识总结如下：</p><h3 id="1-编程范式"><a class="header-anchor" href="#1-编程范式">¶</a>1. 编程范式</h3><p>目前被提出来的编程范式为：结构化编程范式、面向对象编程范式、函数式编程范式。从bob大叔的大作中看出，编程范式的提出并非为编程增加了什么东西，而是限制了什么。</p><ul><li>结构化编程范式，由Edsger Wybe Dijkstra于1968年最先提出。限制了程序的控制权的直接转移；</li><li>面向对象编程范式，是在1966年由Ole Johan Dahl和Kriste Nygaard在论文中总结归纳出来的。这两个程序员注意到在ALGOL语言中，函数调用堆栈可以被挪到堆内存区域里，这样函数定义的本地变量就可以在函数返回之后继续存在。限制了程序控制权的间接转移；</li><li>函数式编程范式，是基于与阿兰.图灵同时代的数学家Alonzo Church在1936年发明的λ演算的直接衍生物。限制了程序中的赋值。</li></ul><h3 id="2-SOLID原则"><a class="header-anchor" href="#2-SOLID原则">¶</a>2. SOLID原则</h3><p>SOLID原则中最广为人知的应该是<strong>单一职责</strong>，这也是很多程序员学习的第一个简单原则。但在SOLID原则中，最核心的原则是<strong>开闭原则</strong>，所有其他的原则都是为其服务的。</p><ul><li>单一职责原则，内涵不是指函数或类或模块只做一件事，而是说只有一个变化的方向，只为一个角色服务。这一点很多人存在误解。<strong>难点在于如何识别变化的方向！</strong></li><li>里式替换原则，类的继承体系，子类均可以替换父类；</li><li>迪米特法则（有些地方翻译为得墨忒法则，最少知识原则），只与你的直接朋友交谈，不和陌生人说话；</li><li>接口隔离原则，客户端不应该依赖他不需要的接口，类间的依赖关系应该建立在最小的接口上。一个大的接口，可以拆分成两个小的接口给两个不同的类使用。</li><li>依赖倒置原则，上层模块不应该依赖于底层模块，他们都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象。这个原则在软件设计和解耦中极其重要，平时应该要有意识的去关注软件层次的依赖。</li><li><strong>开闭原则</strong>，本质上这不是一个具体的原则。一切的一切，都是为了保持软件对扩展开放对修改关闭，维持软件的高内聚低耦合。</li></ul><h3 id="3-设计模式"><a class="header-anchor" href="#3-设计模式">¶</a>3. 设计模式</h3><p>设计模式是为SOLID原则服务的，所有的设计模式无非就是为了解决上述的<strong>开闭</strong>问题。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近看了几本关于编程的书籍，都是些讲解软件架构和设计的书。根据目前脑袋中还残留的记忆，我将这些软件设计的相关知识总结如下：&lt;/p&gt;
+&lt;h3 id=&quot;1-编程范式&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#1-编程范式&quot;&gt;¶&lt;/a&gt;1. 编程范式&lt;/h</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>go函数认知</title>
@@ -216,9 +237,9 @@
     <link href="http://example.com/2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://example.com/2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</id>
     <published>2017-01-12T14:59:58.000Z</published>
-    <updated>2020-12-13T13:02:17.471Z</updated>
+    <updated>2021-03-28T04:24:04.511Z</updated>
     
-    <content type="html"><![CDATA[<p>每一项成绩都是坚持的成果，每一次失败都是懈怠的后果。这种因果关系，再简单不过了。</p><p>前几天我在github上闲逛的时候，看到一位前辈利用jekyll搭建博客，搭出来的效果很不错，是我喜欢的类型。我以前也听说过可以利用github当作服务器，来搭建博客，可由于需求不大，没下手去做。现在讲讲搭建博客的过程吧。</p><p>事先准备：github账号、git、jekyll模版、域名（可有可无）</p><ol><li>在github上申请一个账号，很简单，几步就可以搞定。新建一个仓库，名称一定为<code>username.github.io</code>，然后可以利用fork功能，fork别人的经典模版。</li><li>安装git，利用git与github建立联系，clone你fork的<code>jekyll</code>模版仓库文件到本地。</li><li>修改文件中的关键信息，包括网站的布局、个人信息等。</li><li>push到远程的github上。</li><li>将Github上的域名改成自己想要的域名，前提是你已经购买了域名，并已经解析，解析的地址就是<code>username.github.io</code></li><li>浏览器地址栏输入域名，就可以浏览了。</li></ol><p>至于需不需要安装gem和jekyll，我觉得在你打算fork别人的模版时，就无需安装；如果你自己想写自己的模版，那就安装吧。</p><blockquote><p>总结：只要具备基本的html和css基础，甚至没有基础的同学，都可以搭建自己的博客，赶快来试试吧！</p></blockquote><hr><p><strong>2020.12.3更新：</strong></p><p>原先的博客主题使用起来有很多局限，所以又重新尝试使用hexo主题，记录如下：</p><ol><li>下载并安装<code>node</code>；</li><li>使用<code>npm</code>安装<code>hexo</code>库，安装命令：<code>npm install -g hexo-cli</code></li><li>利用<code>hexo</code>来建站<code>hexo init &lt;folder&gt; &amp;&amp; cd &lt;folder&gt; &amp;&amp; npm install</code></li><li>由于自带的主题不是很好看，可以自己选择喜欢的主题进行下载，我选择<code>fexo</code>，直接clone其仓库到<code>theme</code>目录下，然后将<code>config.yml</code>中的<code>theme</code>改为fexo即可。</li><li>图片存储：<a href="https://sm.ms/">https://sm.ms/</a></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>每一项成绩都是坚持的成果，每一次失败都是懈怠的后果。这种因果关系，再简单不过了。</p><p>前几天我在github上闲逛的时候，看到一位前辈利用jekyll搭建博客，搭出来的效果很不错，是我喜欢的类型。我以前也听说过可以利用github当作服务器，来搭建博客，可由于需求不大，没下手去做。现在讲讲搭建博客的过程吧。</p><p>事先准备：github账号、git、jekyll模版、域名（可有可无）</p><ol><li>在github上申请一个账号，很简单，几步就可以搞定。新建一个仓库，名称一定为<code>username.github.io</code>，然后可以利用fork功能，fork别人的经典模版。</li><li>安装git，利用git与github建立联系，clone你fork的<code>jekyll</code>模版仓库文件到本地。</li><li>修改文件中的关键信息，包括网站的布局、个人信息等。</li><li>push到远程的github上。</li><li>将Github上的域名改成自己想要的域名，前提是你已经购买了域名，并已经解析，解析的地址就是<code>username.github.io</code></li><li>浏览器地址栏输入域名，就可以浏览了。</li></ol><p>至于需不需要安装gem和jekyll，我觉得在你打算fork别人的模版时，就无需安装；如果你自己想写自己的模版，那就安装吧。</p><blockquote><p>总结：只要具备基本的html和css基础，甚至没有基础的同学，都可以搭建自己的博客，赶快来试试吧！</p></blockquote><hr><p><strong>2020.12.3更新：</strong></p><p>原先的博客主题使用起来有很多局限，所以又重新尝试使用hexo主题，记录如下：</p><ol><li>下载并安装<code>node</code>；</li><li>使用<code>npm</code>安装<code>hexo</code>库，安装命令：<code>npm install -g hexo-cli</code></li><li>利用<code>hexo</code>来建站<code>hexo init &lt;folder&gt; &amp;&amp; cd &lt;folder&gt; &amp;&amp; npm install</code></li><li>由于自带的主题不是很好看，可以自己选择喜欢的主题进行下载，我选择<code>fexo</code>，直接clone其仓库到<code>theme</code>目录下，然后将<code>config.yml</code>中的<code>theme</code>改为fexo即可。</li><li>图片存储：<a href="https://sm.ms/">https://sm.ms/</a></li><li>创建一篇新的博客<code>hexo new [title] [layout]</code>，不指定layout则使用默认的布局。</li></ol>]]></content>
     
     
       
