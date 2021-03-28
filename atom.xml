@@ -374,7 +374,7 @@
     <link href="http://example.com/2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://example.com/2017/01/12/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</id>
     <published>2017-01-12T14:59:58.000Z</published>
-    <updated>2021-03-28T05:34:03.769Z</updated>
+    <updated>2021-03-28T06:25:55.911Z</updated>
     
     <content type="html"><![CDATA[<p>每一项成绩都是坚持的成果，每一次失败都是懈怠的后果。这种因果关系，再简单不过了。</p><p>前几天我在github上闲逛的时候，看到一位前辈利用jekyll搭建博客，搭出来的效果很不错，是我喜欢的类型。我以前也听说过可以利用github当作服务器，来搭建博客，可由于需求不大，没下手去做。现在讲讲搭建博客的过程吧。</p><p>事先准备：github账号、git、jekyll模版、域名（可有可无）</p><ol><li>在github上申请一个账号，很简单，几步就可以搞定。新建一个仓库，名称一定为<code>username.github.io</code>，然后可以利用fork功能，fork别人的经典模版。</li><li>安装git，利用git与github建立联系，clone你fork的<code>jekyll</code>模版仓库文件到本地。</li><li>修改文件中的关键信息，包括网站的布局、个人信息等。</li><li>push到远程的github上。</li><li>将Github上的域名改成自己想要的域名，前提是你已经购买了域名，并已经解析，解析的地址就是<code>username.github.io</code></li><li>浏览器地址栏输入域名，就可以浏览了。</li></ol><p>至于需不需要安装gem和jekyll，我觉得在你打算fork别人的模版时，就无需安装；如果你自己想写自己的模版，那就安装吧。</p><blockquote><p>总结：只要具备基本的html和css基础，甚至没有基础的同学，都可以搭建自己的博客，赶快来试试吧！</p></blockquote><hr><p><strong>2020.12.3更新：</strong></p><p>原先的博客主题使用起来有很多局限，所以又重新尝试使用hexo主题，记录如下：</p><ol><li>下载并安装<code>node</code>；</li><li>使用<code>npm</code>安装<code>hexo</code>库，安装命令：<code>npm install -g hexo-cli</code></li><li>利用<code>hexo</code>来建站<code>hexo init &lt;folder&gt; &amp;&amp; cd &lt;folder&gt; &amp;&amp; npm install</code></li><li>由于自带的主题不是很好看，可以自己选择喜欢的主题进行下载，我选择<code>fexo</code>，直接clone其仓库到<code>theme</code>目录下，然后将<code>config.yml</code>中的<code>theme</code>改为fexo即可。</li><li>图片存储：<a href="https://sm.ms/">https://sm.ms/</a></li><li>创建一篇新的博客<code>hexo new [title] [layout]</code>，不指定layout则使用默认的布局。</li></ol><hr><p><strong>2021.3.28更新:</strong></p><p>原本打算把github博客作为技术文章分享的博客，现在改变主意了。我准备将这个博客作为闲聊之地，技术博客全部转移到CSDN和微信公众号上，可以让更多的人看到，或许对他们有用~</p>]]></content>
     
@@ -395,9 +395,9 @@
     <link href="http://example.com/2017/01/01/test/"/>
     <id>http://example.com/2017/01/01/test/</id>
     <published>2017-01-01T13:43:29.000Z</published>
-    <updated>2020-12-13T13:01:53.396Z</updated>
+    <updated>2021-03-28T06:26:07.076Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="title-1"><a class="header-anchor" href="#title-1">¶</a>title 1</h2><h3 id="title-2"><a class="header-anchor" href="#title-2">¶</a>title 2</h3><p><s>删除线</s></p><table><thead><tr><th>表格</th><th>表格1</th></tr></thead><tbody><tr><td>content</td><td>content1</td></tr></tbody></table><p><code>abc</code></p><p><img src="https://i.loli.net/2020/12/06/8HaqMDjLSNQsPzV.jpg" alt="1.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="title-1"><a class="header-anchor" href="#title-1">¶</a>title 1</h2><h3 id="title-2"><a class="header-anchor" href="#title-2">¶</a>title 2</h3><p><s>删除线</s></p><table><thead><tr><th>表格</th><th>表格1</th></tr></thead><tbody><tr><td>content</td><td>content1</td></tr></tbody></table><p><code>abc</code></p><p><img src="https://i.loli.net/2020/12/06/8HaqMDjLSNQsPzV.jpg" alt="1.jpg"></p><h2 id="思考的方式"><a class="header-anchor" href="#思考的方式">¶</a>思考的方式</h2><ul><li>做好事，得多练；说好话，得多想。</li><li>遇事先不发表观点，理清脉络，是第一步。</li><li>不沾前顾后，行动要果断，也要持久的坚持。</li></ul><h2 id="读书的方式"><a class="header-anchor" href="#读书的方式">¶</a>读书的方式</h2><ul><li>读书不为多，也不为结果，只为的是阅读之中思考的过程。</li><li>有所思，便有所得，读书不思，只一目十行，则不如不读。</li><li>读书应多涉猎难读之物，不应在浅处过多停留。</li></ul><h2 id="写字的方式"><a class="header-anchor" href="#写字的方式">¶</a>写字的方式</h2><ul><li>写字应言之有物，不做无病之呻吟。</li><li>写字应精琢细雕，不出粗鄙之物，不应非写而写，应为有感而发。</li><li>写字前应思路明确，应该写什么道理，怎么写？</li></ul><h2 id="行动的方式"><a class="header-anchor" href="#行动的方式">¶</a>行动的方式</h2><ul><li>事急则先做，缓而后。</li><li>无用之事，少做为妙，不做可矣。</li><li>最重要的一条，便是坚持</li></ul>]]></content>
     
     
       
