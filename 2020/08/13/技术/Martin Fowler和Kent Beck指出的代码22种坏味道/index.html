@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="重构的定义 名词形式：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。  动词形式：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。   重构的好处 重构改进软件设计 重构使软件更容易理解 重构帮助找到bug 重构提高编程速度  代码的22种坏味道 重复代码（Duplicated Code） 过长函数（Long Method） 过大的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码坏味道">
+<meta property="og:url" content="https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/index.html">
+<meta property="og:site_name" content="Jamosf&#39;s blog">
+<meta property="og:description" content="重构的定义 名词形式：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。  动词形式：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。   重构的好处 重构改进软件设计 重构使软件更容易理解 重构帮助找到bug 重构提高编程速度  代码的22种坏味道 重复代码（Duplicated Code） 过长函数（Long Method） 过大的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-13T12:55:28.000Z">
+<meta property="article:modified_time" content="2024-01-27T08:22:07.626Z">
+<meta property="article:author" content="Jamosf">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>代码坏味道</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2020/10/11/%E5%AF%B9%E8%87%AA%E5%B7%B1%E7%9A%8450%E6%AC%A1%E6%8B%B7%E9%97%AE/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/08/13/%E6%8A%80%E6%9C%AF/%E8%B6%81%E6%89%8B%E7%9A%84%E5%B7%A5%E5%85%B7/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&text=代码坏味道"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&is_video=false&description=代码坏味道"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=代码坏味道&body=Check out this article: https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&name=代码坏味道&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&t=代码坏味道"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">重构的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">2.</span> <span class="toc-text">重构的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%9A%8422%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93"><span class="toc-number">3.</span> <span class="toc-text">代码的22种坏味道</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        代码坏味道
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Jamosf</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-08-13T12:55:28.000Z" class="dt-published" itemprop="datePublished">2020-08-13</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="重构的定义"><a href="#重构的定义" class="headerlink" title="重构的定义"></a>重构的定义</h3><ol>
+<li><p>名词形式：对软件内部结构的一种调整，目的是在不改变软件可观察行为的前提下，提高其可理解性，降低其修改成本。</p>
+</li>
+<li><p>动词形式：使用一系列重构手法，在不改变软件可观察行为的前提下，调整其结构。</p>
+</li>
+</ol>
+<h3 id="重构的好处"><a href="#重构的好处" class="headerlink" title="重构的好处"></a>重构的好处</h3><ol>
+<li>重构改进软件设计</li>
+<li>重构使软件更容易理解</li>
+<li>重构帮助找到bug</li>
+<li>重构提高编程速度</li>
+</ol>
+<h3 id="代码的22种坏味道"><a href="#代码的22种坏味道" class="headerlink" title="代码的22种坏味道"></a>代码的22种坏味道</h3><ol>
+<li>重复代码（Duplicated Code）</li>
+<li>过长函数（Long Method）</li>
+<li>过大的类（Large Class）</li>
+<li>过长参数列（Long Parameter List）</li>
+<li>发散式变化（Divergent Change）</li>
+<li>散弹式修改（Shotgun Surgery）</li>
+<li>依恋情结（Feature Envy）</li>
+<li>数据泥团（Data Clumps）</li>
+<li>基本类型偏执（Primitive Obsession）</li>
+<li>switch惊悚现身（Switch Satement）</li>
+<li>平行继承体系（Parallel Inheritance Hierarchies）</li>
+<li>累赘类（Lazy Class）</li>
+<li>夸夸其谈未来性（Speculative Generality）</li>
+<li>令人迷惑的暂时字段（Temporary Field）</li>
+<li>过度耦合的消息链（Message Chains）</li>
+<li>中间人（Middle Man）</li>
+<li>亲昵关系（Inappropriate Intimacy）</li>
+<li>异曲同工的类（Alternative Classes with Different Interfaces）</li>
+<li>不完美的库类（Incomplete Library Class）</li>
+<li>纯稚的数据类（Data Class）</li>
+<li>被拒绝的遗赠（Refused Bequest）</li>
+<li>过多的注释（Comments）</li>
+</ol>
+<p>《重构－改善既有代码的设计》一书才刚开始看，以后在实际生产中要牢记上述几条，刻意练习，才能形成习惯。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">重构的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">2.</span> <span class="toc-text">重构的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%9A%8422%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93"><span class="toc-number">3.</span> <span class="toc-text">代码的22种坏味道</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&text=代码坏味道"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&is_video=false&description=代码坏味道"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=代码坏味道&body=Check out this article: https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&title=代码坏味道"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&name=代码坏味道&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://jamosf.github.io/2020/08/13/%E6%8A%80%E6%9C%AF/Martin%20Fowler%E5%92%8CKent%20Beck%E6%8C%87%E5%87%BA%E7%9A%84%E4%BB%A3%E7%A0%8122%E7%A7%8D%E5%9D%8F%E5%91%B3%E9%81%93/&t=代码坏味道"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Jamosf
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
